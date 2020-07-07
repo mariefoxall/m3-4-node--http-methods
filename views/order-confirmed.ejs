@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0, minimal-ui"
+    /> -->
+    <link rel="stylesheet" href="/order-form/styles.css" />
+    <title>Order Confirmation</title>
+  </head>
+  <body>
+    <main class="message-container">
+      <div class="confirmation-message">
+        <p><%- `Hi ${customerName}!` %></p>
+        <p><%- `Thanks so much for your order of ${customerOrder}.`%></p>
+        <p>We will follow up shortly with tracking information,</p>
+        <p>
+          <%- `as the package starts making its way to ${customerProvince}!` %>
+        </p>
+      </div>
+    </main>
+    <script src="scripts.js"></script>
+  </body>
+</html>
