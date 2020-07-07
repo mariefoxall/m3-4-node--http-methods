@@ -28,7 +28,8 @@ express()
       req.body.size = "no size";
     }
     console.log(req.body);
-    customers.forEach((customer) => {
+    var customer;
+    for (customer in customers) {
       if (
         (req.body.givenName === customer.givenName &&
           req.body.surname === customer.surname) ||
@@ -36,19 +37,24 @@ express()
         req.body.address === customer.address
       ) {
         res.status(403).json({ status: "error", error: "repeat-customer" });
+        return;
       } else if (req.body.country !== "Canada") {
         res.status(403).json({ status: "error", error: "undeliverable" });
+        return;
       } else if (Object.values(req.body).includes("undefined")) {
         res.status(403).json({ status: "error", error: "missing-data" });
+        return;
       } else if (
         Number(stock[`${req.body.order}`]) === 0 ||
         Number(stock[`${req.body.order}`][`${req.body.size}`]) === 0
       ) {
         res.status(403).json({ status: "error", error: "unavailable" });
+        return;
       } else {
         res.status(200).json({ status: "success" });
+        return;
       }
-    });
+    }
   })
 
   .get("/order-confirmed", (req, res) => {
